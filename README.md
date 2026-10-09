@@ -1,19 +1,22 @@
-# Go CRUD API Test
+# PHP CRUD API Test
 
-Simple Go API for testing public and authenticated CRUD endpoints.
+Simple PHP API for testing public and authenticated CRUD endpoints.
+
+## Requirements
+
+- PHP 8.1+
+- `pdo_sqlite` extension enabled
 
 ## Run
 
-```bash
-go mod download
-copy .env.example .env
-go run .
+```powershell
+cd C:\Users\User\Documents\dev\api-crud-test
+php -S localhost:3000 index.php
 ```
 
-The API runs at `http://localhost:3000`.
+Open:
 
-Documentation:
-
+- Homepage: `http://localhost:3000`
 - Swagger UI: `http://localhost:3000/api-docs`
 - OpenAPI JSON: `http://localhost:3000/api-docs.json`
 
