@@ -1,34 +1,27 @@
-# API CRUD Express untuk Testing
+# Go CRUD API Test
 
-API ini memakai SQLite lokal (`data/app.db`) dan Swagger UI agar endpoint mudah dibaca serta dicoba langsung dari browser.
+Simple Go API for testing public and authenticated CRUD endpoints.
 
-## Menjalankan
+## Run
 
 ```bash
-npm install
+go mod download
 copy .env.example .env
-npm start
+go run .
 ```
 
-Default server berjalan di `http://localhost:3000`.
+The API runs at `http://localhost:3000`.
 
-Dokumentasi API tersedia di:
+Documentation:
 
-```text
-http://localhost:3000/api-docs
-```
+- Swagger UI: `http://localhost:3000/api-docs`
+- OpenAPI JSON: `http://localhost:3000/api-docs.json`
 
-Spesifikasi OpenAPI mentah tersedia di `http://localhost:3000/api-docs.json`.
-
-Untuk menjalankan test:
-
-```bash
-npm test
-```
+SQLite is stored at `data/app.db` and seeded with sample products automatically.
 
 ## Authentication
 
-Login dengan `POST /api/auth/login`:
+`POST /api/auth/login`
 
 ```json
 {
@@ -37,35 +30,23 @@ Login dengan `POST /api/auth/login`:
 }
 ```
 
-Username dan password dapat diubah di `.env` melalui `AUTH_USERNAME` dan `AUTH_PASSWORD`.
-Gunakan token hasil login pada endpoint protected:
+Use the returned token as:
 
 ```text
 Authorization: Bearer <token>
 ```
 
-## Endpoint
+## Endpoints
 
-| Method | Endpoint | Auth | Keterangan |
-| --- | --- | --- | --- |
-| GET | `/health` | Tidak | Health check |
-| GET | `/api-docs` | Tidak | Dokumentasi Swagger UI |
-| GET | `/api-docs.json` | Tidak | Spesifikasi OpenAPI JSON |
-| POST | `/api/auth/login` | Tidak | Mendapatkan JWT |
-| GET | `/api/products` | Tidak | List produk |
-| GET | `/api/products/:id` | Tidak | Detail produk |
-| POST | `/api/products` | Ya | Membuat produk |
-| PUT | `/api/products/:id` | Ya | Mengubah sebagian field produk |
-| DELETE | `/api/products/:id` | Ya | Menghapus produk |
-
-Contoh body create:
-
-```json
-{
-  "name": "Webcam",
-  "description": "Webcam untuk video call",
-  "price": 450000,
-  "stock": 8
-}
-```
-# nuricovic-apit
+| Method | Endpoint | Auth |
+| --- | --- | --- |
+| GET | `/` | No |
+| GET | `/health` | No |
+| GET | `/api-docs` | No |
+| GET | `/api-docs.json` | No |
+| POST | `/api/auth/login` | No |
+| GET | `/api/products` | No |
+| GET | `/api/products/:id` | No |
+| POST | `/api/products` | Yes |
+| PUT | `/api/products/:id` | Yes |
+| DELETE | `/api/products/:id` | Yes |
